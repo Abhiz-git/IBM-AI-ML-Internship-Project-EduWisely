@@ -1,0 +1,7 @@
+<html>
+<head>
+<script>
+window.location.href = "https://youtube.com/playlist?list=PLMnHwrPjHwJWF-GXKga2ZPsGqAS8C4bao&si=5NpyDZuto9VUDdLt"
+</script>
+</head>
+</html>
