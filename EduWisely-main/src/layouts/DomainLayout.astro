@@ -1,0 +1,51 @@
+---
+import type { CollectionEntry } from "astro:content";
+import Typography from "./Typography.astro";
+
+type Props = CollectionEntry<"domain">["data"];
+
+let hRef = "";
+let name = "";
+
+const { title, description, heroImage } = Astro.props;
+if (title === "STEM") {
+  hRef = "/domain/non-stem";
+  name = "Non STEM";
+} else {
+  hRef = "/domain/stem";
+  name = "STEM";
+}
+console.log(title);
+---
+
+<article class="container px-5 py-24 mx-auto">
+  <div class="text-center w-full space-y-6 pb-6">
+    {
+      heroImage && (
+        <img
+          src={heroImage}
+          alt="stem image"
+          class="object-cover object-center shadow-lg mx-auto h-[30rem] w-[90%] rounded-2xl "
+        />
+      )
+    }
+
+    <p class="italic text-gray-600">{description}</p>
+    <span class="inline-block h-1 w-10 rounded bg-green-500 text-center"></span>
+  </div>
+  <Typography>
+    <slot />
+  </Typography>
+
+  <div class="flex justify-center mt-8">
+    <a
+      class="inline-flex text-white bg-emerald-600 border-0 py-2 px-6 focus:outline-none hover:bg-emerald-800 rounded text-lg no-underline"
+      href={hRef}
+      >Learn about {name}
+    </a>
+    <a
+      class="ml-4 inline-flex bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-300 rounded text-lg no-underline"
+      href="/">Go to Home</a
+    >
+  </div>
+</article>

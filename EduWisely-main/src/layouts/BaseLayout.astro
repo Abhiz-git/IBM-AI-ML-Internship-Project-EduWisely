@@ -1,0 +1,131 @@
+---
+import { ViewTransitions } from "astro:transitions";
+import BaseHead from "../components/BaseHead.astro";
+import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
+import NavLinks from "../components/NavLinks.astro";
+---
+
+<html lang="en">
+  <head>
+  <script is:inline>
+  window.watsonAssistantChatOptions = {
+    integrationID: "122d78fe-b030-4985-9734-6e6cae1d53e6", // The ID of this integration.
+    region: "us-south", // The region your integration is hosted in.
+    serviceInstanceID: "cde19e87-074a-4951-b0c5-d4bf3f973385", // The ID of your service instance.
+    onLoad: async (instance) => { await instance.render(); }
+  };
+  setTimeout(function(){
+    const t=document.createElement('script');
+    t.src="https://web-chat.global.assistant.watson.appdomain.cloud/versions/" + (window.watsonAssistantChatOptions.clientVersion || 'latest') + "/WatsonAssistantChatEntry.js";
+    document.head.appendChild(t);
+  });
+</script>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <body class="font-body text-gray-900">
+    <!-- Header -->
+    <header class="bg-white pt-2 body-font text-gray-950">
+      <div
+        class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center"
+      >
+        <a
+          class="flex font-logo font-medium items-center text-gray-950 text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-4 md:mb-0 hover:bg-clip-text hover:text-transparent hover:bg-gradient-to-r from-teal-800 to-emerald-600 no-underline"
+          href="/"
+        >
+          EduWisely
+        </a>
+        <nav
+          class="md:ml-auto flex flex-wrap items-center justify-center text-lg sm:text-xl md:text-2xl lg:text-3xl mx-auto md:mx-0 text-center"
+        >
+          <NavLinks />
+        </nav>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <slot />
+
+    <ViewTransitions />
+    <!-- Footer -->
+    <footer class="text-teal-400 bg-emerald-700 body-font">
+      <div
+        class="container px-5 py-24 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col"
+      >
+        <div
+          class="w-64 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left"
+        >
+          <a
+            class="flex font-logo text-2xl items-center md:justify-start justify-center text-white"
+          >
+            EduWisely
+          </a>
+          <p class="mt-2 text-lg text-gray-100">
+            Your Ultimate Hub for Guidance and Resources
+          </p>
+        </div>
+        <div
+          class="flex-grow flex flex-wrap md:pl-20 -mb-10 md:mt-0 mt-10 md:text-left text-center"
+        >
+          <div class="lg:w-1/4 md:w-1/2 w-full px-4">
+            <h2 class="font-medium text-white tracking-widest text-sm mb-3">
+              Domains Present
+            </h2>
+            <nav class="list-none mb-10">
+              <li>
+                <a class="text-gray-400 hover:text-white" href="/domain/stem"
+                  >S.T.E.M</a
+                >
+              </li>
+              <li>
+                <a
+                  class="text-gray-400 hover:text-white"
+                  href="/domain/non-stem">Non S.T.E.M</a
+                >
+              </li>
+            </nav>
+          </div>
+          <div class="lg:w-1/4 md:w-1/2 w-full px-4">
+            <h2
+              class="title-font font-medium text-white tracking-widest text-sm mb-3"
+            >
+              Subjects
+            </h2>
+            <nav class="list-none mb-10">
+              <li>
+                <a
+                  class="text-gray-400 hover:text-white"
+                  href="/subjects/physics">Physics</a
+                >
+              </li>
+              <li>
+                <a class="text-gray-400 hover:text-white" href="/subjects/arts"
+                  >Arts</a
+                >
+              </li>
+              <li>
+                <a class="text-gray-400 hover:text-white" href="/subjects/cs"
+                  >Computer Science</a
+                >
+              </li>
+              <li>
+                <a
+                  class="text-gray-400 hover:text-white"
+                  href="/subject/history">History</a
+                >
+              </li>
+            </nav>
+          </div>
+        </div>
+      </div>
+      <div class="bg-emerald-900 bg-opacity-75">
+        <div
+          class="container justify-center mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row"
+        >
+          <p class="text-gray-100 text-lg text-center">
+            © 2024 {SITE_TITLE}
+          </p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

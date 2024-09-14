@@ -1,0 +1,21 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout>
+  <div class="min-h-[100vh] container mx-auto mt-20 space-y-6">
+    <h1 class="font-logo sm:text-4xl text-3xl mb-4 font-medium">Search:</h1>
+    <div id="search" class=""></div>
+  </div>
+</BaseLayout>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    //@ts-ignore
+    new PagefindUI({
+      element: "#search",
+      showSubResults: true,
+      resetStyles: false,
+    });
+  });
+</script>

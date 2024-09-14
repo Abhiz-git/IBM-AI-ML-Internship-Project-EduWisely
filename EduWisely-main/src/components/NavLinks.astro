@@ -1,0 +1,40 @@
+---
+const links = [
+  {
+    href: "/domain",
+    title: "Our Guides",
+  },
+  {
+    href: "/about",
+    title: "About Us",
+  },
+  { href: "/search", title: "Search" },
+];
+---
+
+{
+  links.map((l) => (
+    <a
+      href={l.href}
+      data-navlink
+      class="mr-5 decoration-emerald-600 hover:underline hover:underline-offset-2 hover:cursor-pointer aria-current:underline aria-current:underline-offset-2"
+    >
+      {l.title}
+    </a>
+  ))
+}
+
+<script>
+  document.addEventListener("astro:after-swap", () => {
+    const navLinks = document.querySelectorAll(
+      "[data-navlink]"
+    ) as NodeListOf<HTMLAnchorElement>;
+
+    navLinks.forEach((link) => {
+      if (window.location.href === link.href) {
+        link.setAttribute("aria-current", "page");
+        console.log("here");
+      }
+    });
+  });
+</script>

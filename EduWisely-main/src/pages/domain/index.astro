@@ -1,0 +1,35 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+const domains = await getCollection("domain");
+---
+
+<BaseLayout>
+  <section class="container mx-auto px-5 py-24 flex flex-col">
+    <h1 class="text-center font-logo text-3xl md:text-5xl">Select a Domain</h1>
+    <div class="flex flex-col justify-center md:flex-row py-12">
+      {
+        domains.map((item) => (
+          <div class="sm:w-1/2 mb-10 px-4">
+            <div class="rounded-lg h-64 overflow-hidden">
+              <img
+                alt="content"
+                class="object-cover object-center h-96 w-full"
+                src={item.data.heroImage}
+              />
+            </div>
+            <h2 class="title-font text-2xl font-medium text-gray-900 mt-6 mb-3">
+              {item.data.title}
+            </h2>
+            <p class="leading-relaxed text-base">{item.data.description}</p>
+            <a class="no-underline" href={`/domain/${item.slug}`}>
+              <button class="flex mx-auto mt-16 text-white bg-emerald-600 border-0 py-2 px-8 focus:outline-none hover:bg-emerald-800 rounded text-lg">
+                Learn More
+              </button>
+            </a>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>
